@@ -1,0 +1,27 @@
+local player = Players.LocalPlayer
+
+-- Method 1: Health manipulation
+spawn(function()
+    while wait(0.1) do
+        if player.Character and player.Character:FindFirstChild("Humanoid") then
+            player.Character.Humanoid.Health = player.Character.Humanoid.MaxHealth
+        end
+    end
+end)
+
+-- Method 2: Damage immunity
+local function onDamage(damage)
+    return 0
+end
+
+if player.Character and player.Character:FindFirstChild("Humanoid") then
+    player.Character.Humanoid.HealthChanged:Connect(function(health)
+        if health < player.Character.Humanoid.MaxHealth then
+            player.Character.Humanoid.Health = player.Character.Humanoid.MaxHealth
+        end
+    end)
+end
+
+-- Method 3: Advanced god mode
+loadstring(game:HttpGet("https://raw.githubusercontent.com/99nightsscripts/main/godmodev3.lua"))()
+⚔️ Auto Combat
